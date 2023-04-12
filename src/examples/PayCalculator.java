@@ -1,16 +1,34 @@
 package examples;
 
+/**
+ * This the javadoc
+ * @author Adam Winter, Alex Brenna
+ * @version see version control
+ */
 public class PayCalculator
 {
-    double payAmount;
-    String EmployeeFullName;
+    public static final int FULL_HOURS = 40;
+    public static final double OVERTIME_RATE = 0.5;
+    private double payAmount;
+    private String employeeFullName;
 
-    public PayCalculator(double payAmount, String EmployeeFullName)
+    /**
+     *
+     * @param payAmount the payment amount
+     * @param employeeFullName String the name of the employee
+     */
+    public PayCalculator(double payAmount, String employeeFullName)
     {
         this.payAmount = payAmount;
-        this.EmployeeFullName = EmployeeFullName;
+        this.employeeFullName = employeeFullName;
     }
 
+    /**
+     * This is the doc
+     * @param salaried boolean whether salaried
+     * @param hours int number of hours worked
+     * @return double the pay
+     */
     public double calculatePay(boolean salaried, int hours)
     {
         if (salaried)
@@ -21,17 +39,28 @@ public class PayCalculator
         {
             double total = hours * payAmount;
 
-            if (hours > 40)
+            if (hours > FULL_HOURS)
             {
-                total += hours * (0.5 * payAmount);
+                total += hours * (OVERTIME_RATE * payAmount);
             }
 
             return total;
         }
     }
 
-    public void printEmployee()
-    {
-        System.out.println(EmployeeFullName);
+//    /**
+//     * Thsi is the javadoc
+//     */
+//    public void printEmployee()
+//    {
+//        System.out.println(employeeFullName);
+//    }
+
+    @Override
+    public String toString() {
+        return "PayCalculator{" +
+                "payAmount=" + payAmount +
+                ", employeeFullName='" + employeeFullName + '\'' +
+                '}';
     }
 }
